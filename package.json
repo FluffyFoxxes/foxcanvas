@@ -1,0 +1,26 @@
+{
+  "name": "foxcanvas",
+  "private": true,
+  "version": "0.1.0",
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "dev": "concurrently -n api,web -c yellow,cyan \"cd apps/api && tsx watch src/server.ts\" \"cd apps/web && vite\"",
+    "test": "(cd apps/api && npm run test) && (cd apps/web && npm run test)",
+    "typecheck": "(cd apps/api && npm run typecheck) && (cd apps/web && npm run typecheck)",
+    "build": "(cd apps/api && npm run build) && (cd apps/web && npm run build)",
+    "db:push": "cd apps/api && npm run db:push",
+    "prisma:generate": "cd apps/api && npm run prisma:generate",
+    "format": "prettier --write .",
+    "format:check": "prettier --check ."
+  },
+  "devDependencies": {
+    "concurrently": "^9.1.2",
+    "prettier": "^3.10.1"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}
